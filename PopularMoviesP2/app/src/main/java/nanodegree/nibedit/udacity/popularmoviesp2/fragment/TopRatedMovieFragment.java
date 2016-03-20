@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import nanodegree.nibedit.udacity.popularmoviesp2.utils.Constants;
 
 /**
- * Description :
+ * Description : This class creates Fragment with top rated movies
  * Created on : 2/7/2016
  * Author     : Nibedit Dey
  */

@@ -37,7 +37,7 @@ public class JsonNetworkManager {
      */
     public static synchronized JsonNetworkManager getInstance(Context con) {
         context = con;
-        if(sInstance==null)
+        if(sInstance == null)
         {
             sInstance = new JsonNetworkManager();
         }
@@ -48,8 +48,7 @@ public class JsonNetworkManager {
      * @return The Volley Request queue, the queue will be created if it is null
      */
     public RequestQueue getRequestQueue() {
-        // lazy initialize the request queue, the queue instance will be
-        // created when it is accessed for the first time
+
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(context);
         }

@@ -7,6 +7,6 @@ import android.view.View;
  * Created on : 2/7/2016
  * Author     : Nibedit Dey
  */
-public interface OnRecyclerItemViewClickListener<Model> {
+public interface onRecyclerItemViewClickListener<Model> {
     void onItemClick(View view,Model model);
 }

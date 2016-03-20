@@ -45,17 +45,6 @@ public class MovieDetailsActivity extends BaseActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /*getMenuInflater().inflate(R.menu.menu_movie_details, menu);
-        MenuItem item=menu.findItem(R.id.action_share);
-        mShareActionProvider=(ShareActionProvider)MenuItemCompat.getActionProvider(item);
-        if (mShareActionProvider != null) {
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello");
-            shareIntent.setType("text/plain");
-            mShareActionProvider.setShareIntent(shareIntent);
-        }
-*/
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -63,19 +52,11 @@ public class MovieDetailsActivity extends BaseActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       /* int id = item.getItemId();
-        switch (id) {
-            case R.id.action_settings:
-                break;
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            case R.id.action_share:
-                Toast.makeText(this, "Hello",
-                        Toast.LENGTH_LONG).show();
-                break;
-        }
-*/
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
         return super.onOptionsItemSelected(item);
     }
 

@@ -13,8 +13,8 @@ import nanodegree.nibedit.udacity.popularmoviesp2.data.MovieDBContract;
 import nanodegree.nibedit.udacity.popularmoviesp2.model.MovieDetails;
 
 /**
- * Description :
- * Created on : 2/7/2016
+ * Description : This class creates Fragment with favorite rated movies
+ * Created on : 3/10/2016
  * Author     : Nibedit Dey
  */
 public class FavouriteMovieFragment extends BaseFragment implements AdapterView.OnItemClickListener {
@@ -48,7 +48,6 @@ public class FavouriteMovieFragment extends BaseFragment implements AdapterView.
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        //super.onViewCreated(view, savedInstanceState);
         Cursor cursor = getActivity().getContentResolver().query(MovieDBContract.MovieEntry.CONTENT_URI, null, null, null, null);
         getMovieListFromCursor(cursor);
         movieGridList.setAdapter(new MovieListAdapter(getActivity(), movieDetailsList));
@@ -82,14 +81,13 @@ public class FavouriteMovieFragment extends BaseFragment implements AdapterView.
             movie.setMovieRating(cursor.getDouble(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_RATING)));
             movie.setMovieDate(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_RELEASE_DATE)));
             movie.setImageThumbnail(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_IMAGE_URL)));
-            movie.setOriginalLangauge(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_LANGUAGE)));
+            movie.setOriginalLanguage(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_LANGUAGE)));
             movie.setAdultType(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_ADULT)));
             movie.setMoviePlot(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_OVERVIEW)));
             movie.setImageBackDrop(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_BACKDROP_PATH)));
             movie.setPopularity(cursor.getInt(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_POPULARITY)));
             movie.setVoteCount(cursor.getInt(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_VOTE_COUNT)));
             movie.setVideoAvailable(cursor.getString(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_VIDEO)));
-            //movie.setVoteCount(cursor.getInt(cursor.getColumnIndex(MovieDBContract.MovieEntry.COLUMN_VOTE_AVERAGE)));
             movieDetailsList.add(movie);
         }
     }

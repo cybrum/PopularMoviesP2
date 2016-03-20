@@ -10,8 +10,8 @@ public class Constants {
     public static final String MOVIE_DB_SORT_VOTE_AVERAGE_URL = "vote_average.desc";
     public static final String MOVIE_DB_REVIEWS_URL = "http://api.themoviedb.org/3/movie/$/reviews?api_key=" + MOVIE_DB_API_KEY;
     public static final String MOVIE_DB_TRAILERS_URL = "http://api.themoviedb.org/3/movie/$/videos?api_key=" + MOVIE_DB_API_KEY;
-
     public static final String YOUTUBE_TRAILER_THUMBNAIL="http://img.youtube.com/vi/$/0.jpg";
+
     /*API Constants*/
     public static final String
             KEY_ADULT = "adult",
@@ -26,6 +26,7 @@ public class Constants {
             KEY_VIDEO = "video",
             KEY_VOTE_AVEARGE = "vote_average",
             KEY_VOTE_COUNT = "vote_count";
+
     /*For Movie Reviews*/
     public static final String
             KEY_MOVIE_REVIEW_ID = "id",
@@ -33,7 +34,6 @@ public class Constants {
             KEY_MOVIE_REVIEW_CONTENT = "content";
 
     /*For Movie Trailer"*/
-
     public static final String
             KEY_MOVIE_TRAILER_KEY = "key",
             KEY_MOVIE_TRAILER_SITE = "site";

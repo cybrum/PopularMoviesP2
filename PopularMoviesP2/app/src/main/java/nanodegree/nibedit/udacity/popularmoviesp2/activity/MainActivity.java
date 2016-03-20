@@ -23,9 +23,8 @@ import nanodegree.nibedit.udacity.popularmoviesp2.utils.CheckConnectivity;
 public class MainActivity extends BaseActivity {
 
     private boolean mTwoPane;
-    String[] sortByItems = {"Popularity", "Rating", "Favourite"};
     private int sortType = 0;
-    private static final String FRAGMENT_TYPE = "fragmenttype";
+    private static final String FRAGMENT_TYPE = "";
     Toolbar toolbar;
 
     @Override
@@ -36,7 +35,6 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         if (savedInstanceState == null) {
             if (new CheckConnectivity(getApplicationContext()).isConnectedToInternet()) {
-                toolbar.setTitle("Popular");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, PopularMovieFragment.newInstance()).commit();
 
             } else {
@@ -48,7 +46,6 @@ public class MainActivity extends BaseActivity {
         {
             sortType=savedInstanceState.getInt(FRAGMENT_TYPE);
         }
-
 
     }
 
@@ -81,6 +78,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -88,44 +86,33 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_popular) {
+            id = 0;
         }
-        if (id == R.id.action_sort) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setItems(sortByItems, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (sortType != which) {
-                        sortType = which;
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, getFragmentType(sortType))
-                                .addToBackStack(null)
-                                .commit();
-                    }
-                }
-            }).create().show();
-            return true;
+        else if(id == R.id.action_highest_rated){
+            id = 1;
+        } else if(id == R.id.action_fav){
+            id = 2;
         }
 
-        return super.onOptionsItemSelected(item);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, getFragmentType(id))
+                .addToBackStack(null)
+                .commit();
+
+        return true;
     }
-
     private Fragment getFragmentType(int sortType) {
         switch (sortType) {
             case 0:
-                toolbar.setTitle("Popular");
                 return PopularMovieFragment.newInstance();
             case 1:
-                toolbar.setTitle("Top Rated");
                 return TopRatedMovieFragment.newInstance();
             case 2:
-                toolbar.setTitle("Favourite");
                 return FavouriteMovieFragment.newInstance();
 
         }
         return null;
     }
-
 }

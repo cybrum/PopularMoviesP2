@@ -17,7 +17,7 @@ public class URIBuilder {
                 .appendQueryParameter("api_key", Constants.MOVIE_DB_API_KEY)
                 .appendQueryParameter("page", queryPageNumber)
                 .appendQueryParameter("sort_by",queryType);
-        Uri uri=builder.build();
+        Uri uri = builder.build();
         return uri.toString();
     }
 

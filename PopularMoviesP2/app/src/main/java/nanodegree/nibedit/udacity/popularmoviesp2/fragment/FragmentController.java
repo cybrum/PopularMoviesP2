@@ -33,11 +33,8 @@ public class FragmentController {
 
     public void jsonRequest(String URL, final Context context, final onTaskCompleted onTaskCompleted) {
         {
-
-
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                    URL, null,
-                    new Response.Listener<JSONObject>() {
+                    URL, null, new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
@@ -53,14 +50,14 @@ public class FragmentController {
                                     movieDetails.setMovieRating(movieDetailsObject.getDouble(Constants.KEY_VOTE_AVEARGE));
                                     movieDetails.setMovieOriginalTitle(movieDetailsObject.getString(Constants.KEY_ORIGINAL_TITLE));
                                     movieDetails.setImageBackDrop(movieDetailsObject.getString(Constants.KEY_BACKDROP_PATH));
-                                    movieDetails.setOriginalLangauge(movieDetailsObject.getString(Constants.KEY_ORIGINAL_LANGUAGE));
+                                    movieDetails.setOriginalLanguage(movieDetailsObject.getString(Constants.KEY_ORIGINAL_LANGUAGE));
                                     movieDetails.setVoteCount(movieDetailsObject.getInt(Constants.KEY_VOTE_COUNT));
                                     movieDetails.setPopularity(movieDetailsObject.getInt(Constants.KEY_POPULARITY));
                                     movieDetails.setAdultType(movieDetailsObject.getString(Constants.KEY_ADULT));
                                     movieDetails.setVideoAvailable(movieDetailsObject.getString(Constants.KEY_VIDEO));
                                     Uri uri = MovieDBContract.MovieEntry.CONTENT_URI.buildUpon().appendPath(movieDetails.getMovieID() + "").build();
                                     Cursor movieCursor = context.getContentResolver().query(uri, null, null, null, null);
-                                    if (movieCursor.moveToNext() != true) {
+                                    if (!movieCursor.moveToNext()) {
                                         movieDetails.setIsFavourite(false);
                                     } else {
                                         movieDetails.setIsFavourite(true);
@@ -82,8 +79,7 @@ public class FragmentController {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    //VolleyLog.d(TAG, "Error: " + error.getMessage());
-
+                    Log.i("Error:", error.getMessage());
                 }
             });
             JsonNetworkManager.getInstance(context).addToRequestQueue(jsonObjReq);
@@ -120,7 +116,6 @@ public class FragmentController {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                // hide the progress dialog
 
             }
         });

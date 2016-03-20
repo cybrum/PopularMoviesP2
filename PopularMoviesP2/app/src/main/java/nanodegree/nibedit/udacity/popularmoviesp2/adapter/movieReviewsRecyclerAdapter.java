@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import nanodegree.nibedit.udacity.popularmoviesp2.model.MovieReviews;
-import nanodegree.nibedit.udacity.popularmoviesp2.fragment.OnRecyclerItemViewClickListener;
+import nanodegree.nibedit.udacity.popularmoviesp2.fragment.onRecyclerItemViewClickListener;
 import nanodegree.nibedit.udacity.popularmoviesp2.fragment.R;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class movieReviewsRecyclerAdapter extends RecyclerView.Adapter<movieRevie
 
     private List<MovieReviews> items;
     private int itemLayout;
-    private OnRecyclerItemViewClickListener<MovieReviews> itemClickListener;
+    private onRecyclerItemViewClickListener<MovieReviews> itemClickListener;
 
     public movieReviewsRecyclerAdapter(List<MovieReviews> items,int itemLayout){
         this.itemLayout=itemLayout;

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Popular Movies P2</string>
-    <string name="action_settings">Settings</string>
     <string name="action_share">Share</string>
     <string name="rating_header">Rating</string>
     <string name="rating_range">/10</string>
@@ -9,16 +8,15 @@
 
     <string name="refresh_page">Refresh</string>
     <string name="btn_review_txt">See Reviews</string>
-    <string-array name="sort_by_array">
-        <item>Popularity</item>
-        <item>Rating</item>
-    </string-array>
 
     <string name="transition_name_poster">transition:Poster</string>
     <string name="title_activity_movie_detail">Movie Details</string>
     <string name="menu_popular">Most Popular</string>
     <string name="menu_highest_rated">Highest Rated</string>
+    <string name="menu_favorite">Favorite</string>
     <string name="synopsis">"Synopsis"</string>
+    <string name="trailers">"Trailers"</string>
+    <string name="reviews">"Reviews"</string>
     <string name="website">"www.udacity.com"</string>
 
 </resources>

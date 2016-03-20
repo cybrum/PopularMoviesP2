@@ -45,12 +45,12 @@ public class MovieDetails implements Parcelable {
         this.adultType = adultType;
     }
 
-    public String getOriginalLangauge() {
+    public String getOriginalLanguage() {
         return originalLangauge;
     }
 
-    public void setOriginalLangauge(String originalLangauge) {
-        this.originalLangauge = originalLangauge;
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLangauge = originalLanguage;
     }
 
     public int getPopularity() {

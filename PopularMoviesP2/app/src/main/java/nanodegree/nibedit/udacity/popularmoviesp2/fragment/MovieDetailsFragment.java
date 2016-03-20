@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import nanodegree.nibedit.udacity.popularmoviesp2.activity.MovieReviewsActivity;
@@ -48,8 +49,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Description :
- * Created on : 2/7/2016
+ * Description : This class is responsible for loading movie and showing data at the grid component.
+ * Created on : 12/25/2015
  * Author     : Nibedit Dey
  */
 public class MovieDetailsFragment extends Fragment implements View.OnClickListener, ShareActionProvider.OnShareTargetSelectedListener {
@@ -107,13 +108,12 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
             movieDetails = activity.getIntent().getParcelableExtra(Constants.PARCELABLE_KEY);
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } else {
-            // toolbar.inflateMenu(R.menu.menu_movie_details);
             Bundle bundle = getArguments();
             movieDetails = bundle.getParcelable(Constants.PARCELABLE_KEY);
         }
         collapsingToolbar.setTitle(movieDetails.getMovieOriginalTitle());
         changeFabBackGrndtoFav();
-        ratingGiven.setText(movieDetails.getMovieRating() + "");
+        ratingGiven.setText(Double.toString(movieDetails.getMovieRating()));
         releaseDate.setText(movieDetails.getMovieDate());
         movieTitle.setText(movieDetails.getMovieOriginalTitle());
         String posterURL = Constants.MOVIE_DB_IMAGE_BASE_URL + movieDetails.getImageThumbnail();
@@ -174,7 +174,6 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
     private void applyPalette(Palette palette) {
         Palette.Swatch vibrantDark = palette.getDarkVibrantSwatch();
         if (vibrantDark != null) {
-            //Palette.Swatch vibrantLight=palette.;
             collapsingToolbar.setContentScrimColor(vibrantDark.getRgb());
             collapsingToolbar.setStatusBarScrimColor(vibrantDark.getRgb());
         }
@@ -188,7 +187,7 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
         contentValues.put(MovieDBContract.MovieEntry.COLUMN_RATING, movie.getMovieRating());
         contentValues.put(MovieDBContract.MovieEntry.COLUMN_RELEASE_DATE, movie.getMovieDate());
         contentValues.put(MovieDBContract.MovieEntry.COLUMN_IMAGE_URL, movie.getImageThumbnail());
-        contentValues.put(MovieDBContract.MovieEntry.COLUMN_LANGUAGE, movie.getOriginalLangauge());
+        contentValues.put(MovieDBContract.MovieEntry.COLUMN_LANGUAGE, movie.getOriginalLanguage());
         contentValues.put(MovieDBContract.MovieEntry.COLUMN_ADULT, movie.getAdultType());
         contentValues.put(MovieDBContract.MovieEntry.COLUMN_OVERVIEW, movie.getMoviePlot());
         contentValues.put(MovieDBContract.MovieEntry.COLUMN_BACKDROP_PATH, movie.getImageBackDrop());
@@ -203,7 +202,6 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId() == R.id.favourite_btn) {
             Uri uri = MovieDBContract.MovieEntry.CONTENT_URI.buildUpon().appendPath(movieDetails.getMovieID() + "").build();
-            //Cursor movieCursor = getActivity().getContentResolver().query(uri, null, null, null, null);
             if (!isFavourite(movieDetails)) {
                 ContentValues contentValues = generateContentValues(movieDetails);
                 Uri insertedUri = getActivity().getContentResolver().insert(MovieDBContract.MovieEntry.CONTENT_URI, contentValues);
@@ -250,8 +248,7 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
     }
 
     protected void showSnackBarLong(CoordinatorLayout coordinatorLayout, String message) {
-        Snackbar snackbar = Snackbar
-                .make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
@@ -268,7 +265,7 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(sharevideoIntent());
+            mShareActionProvider.setShareIntent(shareVideoIntent());
             mShareActionProvider.setOnShareTargetSelectedListener(this);
         }
     }
@@ -276,10 +273,11 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        return id == R.id.action_settings;
+
+        return super.onOptionsItemSelected(item);
     }
 
-    private Intent sharevideoIntent() {
+    private Intent shareVideoIntent() {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.setAction(Intent.ACTION_SEND);
@@ -294,7 +292,7 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
 
     @Override
     public boolean onShareTargetSelected(ShareActionProvider source, Intent inten) {
-        mShareActionProvider.setShareIntent(sharevideoIntent());
+        mShareActionProvider.setShareIntent(shareVideoIntent());
         return true;
     }
 }

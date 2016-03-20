@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import nanodegree.nibedit.udacity.popularmoviesp2.model.MovieTrailers;
-import nanodegree.nibedit.udacity.popularmoviesp2.fragment.OnRecyclerItemViewClickListener;
+import nanodegree.nibedit.udacity.popularmoviesp2.fragment.onRecyclerItemViewClickListener;
 import nanodegree.nibedit.udacity.popularmoviesp2.fragment.R;
 import com.squareup.picasso.Picasso;
 import nanodegree.nibedit.udacity.popularmoviesp2.utils.Constants;
@@ -26,7 +26,7 @@ public class MovieTrailerRecyclerAdapter extends RecyclerView.Adapter<MovieTrail
 
     private List<MovieTrailers> items;
     private int itemLayout;
-    private OnRecyclerItemViewClickListener<MovieTrailers> itemClickListener;
+    private onRecyclerItemViewClickListener<MovieTrailers> itemClickListener;
 
     public MovieTrailerRecyclerAdapter(List<MovieTrailers> items, int itemLayout) {
         this.itemLayout = itemLayout;

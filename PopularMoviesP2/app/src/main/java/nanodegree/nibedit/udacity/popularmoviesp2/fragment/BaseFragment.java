@@ -39,7 +39,6 @@ public abstract class BaseFragment extends Fragment implements AdapterView.OnIte
     List<MovieDetails> movieDetailsList = new ArrayList<>();
     private MovieListAdapter movieListAdapter;
     private int itemClicked = 0;
-    private int changeFrag = -1;
     boolean tabletSize;
     Activity activity;
 
@@ -89,8 +88,6 @@ public abstract class BaseFragment extends Fragment implements AdapterView.OnIte
 
     protected void jsonRequest(String sortType, String pageNumber) {
         String URL = new URIBuilder().buildURI(sortType, pageNumber);
-        //final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        //progressDialog.show();
         FragmentController fragmentController = new FragmentController();
         fragmentController.jsonRequest(URL, getContext(), new onTaskCompleted() {
             @Override
@@ -98,14 +95,6 @@ public abstract class BaseFragment extends Fragment implements AdapterView.OnIte
                 if (object != null) {
                     movieDetailsList.addAll((List<MovieDetails>) object);
                     movieListAdapter.notifyDataSetChanged();
-                    //progressDialog.hide();
-                   /* if(tabletSize &&(itemClicked!=changeFrag)){
-                        changeFrag=itemClicked;
-                        MovieDetailsFragment fragment = MovieDetailsFragment.newInstance(movieDetailsList.get(itemClicked));
-                        getFragmentManager().beginTransaction()
-                                .replace(R.id.movie_detail_container, fragment)
-                                .commit();
-                    }*/
                 }
             }
         });
@@ -113,7 +102,6 @@ public abstract class BaseFragment extends Fragment implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
         itemClicked = position;
         movieGridList.setItemChecked(position, true);
         if (!tabletSize) {
@@ -158,5 +146,4 @@ public abstract class BaseFragment extends Fragment implements AdapterView.OnIte
             }
         }
     }
-
 }
