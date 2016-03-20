@@ -1,10 +1,5 @@
 package nanodegree.nibedit.udacity.popularmoviesp2.utils;
 
-/**
- * Description :
- * Created on : 2/7/2016
- * Author     : Nibedit Dey
- */
 public class Constants {
     public final static String PARCELABLE_KEY = "nanodegree.nibedit.udacity.popularmoviesp2.parcelable";
     public static final String MOVIE_DB_API_KEY = "ENTER_YOUR_API_KEY_HERE";

@@ -150,7 +150,6 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
         super.onActivityCreated(savedInstanceState);
     }
 
-    @SuppressWarnings("unchecked")
     private void jsonRequestTrailer(String URL) {
         {
             new FragmentController().trailerJsonRequest(URL, getContext(), new onTaskCompleted() {
